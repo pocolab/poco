@@ -8,17 +8,12 @@ import {
   getTokenTimeLock,
 } from '../../helpers/contracts-getters';
 
-import {
-  deployLiteUnicornToken, deployPocoToken,
-} from '../../helpers/contracts-deployments';
 
 import { waitForTx } from '../../helpers/misc-utils';
 import { OWNER_ADDRESS } from '../../helpers/constants';
 import { verifyContract } from '../../helpers/etherscan-verification';
 
-const { StakeUIHelper } = eContractid;
-
-task(`deploy-poco-token`, `Deploys the ${StakeUIHelper} contract`)
+task(`deploy-poco-token`, `Deploys the contract`)
   .addFlag('verify', 'Verify StakedAave contract via Etherscan API.')
   .setAction(async ({ verify, vaultAddress, aaveAddress }, localBRE) => {
     await localBRE.run('set-DRE');
@@ -31,5 +26,4 @@ task(`deploy-poco-token`, `Deploys the ${StakeUIHelper} contract`)
 
     
     await deployPocoToken(verify)
-    console.log(`\tFinished ${StakeUIHelper} deployment`);
   });
